@@ -17,6 +17,9 @@
               <h5 <?if($isAdmin):?>contenteditable="true"<?endif?> id="task-title-<?=$task[id]?>" class="card-title task-title editable-field"><?=$task[title]?></h5>
               <p <?if($isAdmin):?>contenteditable="true"<?endif?> id="task-description-<?=$task[id]?>" class="card-text task-description editable-field"><?=$task[description]?></p>
               <?if($task[important]):?><span id="task-important-<?=$task[id]?>" class="badge badge-danger">Срочно!</span><?endif?>
+                <?if($task['updated_by'] > 0):?>
+                  <span class="badge badge-info">Отредактировано администратором</span>
+                <?endif?>  
                 <?if($isAdmin):?><span data-id="<?=$task[id]?>" class="delete-btn delete-task"></span><?endif?>
             </div>
           </div>

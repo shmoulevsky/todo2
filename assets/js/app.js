@@ -54,7 +54,18 @@ $(function(){
                 data: ({}),
             success: function(data){
                   
-                if(data.status == 'deleted') {$('#card-item-'+id).fadeOut();}
+                if(data.status == 'deleted') {
+                    
+                    let params = window.location.search;
+
+                        if(!params) {
+                            params = "?action=deleted"
+                        } else {
+                            params += "&action=deleted";
+                        }
+                        
+                        location.href += params;
+                }
                 
                                       
             },
@@ -134,7 +145,7 @@ $(function(){
                         } else {
                             params += "&action=add";
                         }
-                        console.log(location.href);
+
                         location.href += params;
                            
                         

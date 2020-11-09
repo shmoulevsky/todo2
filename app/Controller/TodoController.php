@@ -78,7 +78,7 @@ class TodoController extends BaseController
 
         $id = intval($request->post['id']);
         
-        if($isAdmin){
+        
             
             if($id == 0){
 
@@ -90,19 +90,29 @@ class TodoController extends BaseController
                 $taskModel->user_id = UserModel::getId();
                 $taskModel->status_id = intval($request->post['status_id']);
                 $taskModel->created_at = date('Y-m-d H:i:s');
+                $taskModel->updated_at = date('Y-m-d H:i:s');
+                $taskModel->updated_by = 0;
                 $taskModel->important = $request->post['important'];
                 $id = $taskModel->save();
                 $json = ['id' => $id, 'status' => 'add'];
     
             }else{
-    
-                $taskModel = TaskModel::get($id);
-                $result = $taskModel->update(['title' => $request->post['title'], 'description' => $request->post['description'], 'email' => $request->post['email'], 'user_name' => $request->post['user_name']]);
-                $json = ['result' => $result, 'status' => 'edit'];
+                
+                if($isAdmin){
+
+                    $date = date('Y-m-d H:i:s');
+                    $taskModel = TaskModel::get($id);
+                    $result = $taskModel->update(['title' => $request->post['title'], 'description' => $request->post['description'], 'email' => $request->post['email'], 'user_name' => $request->post['user_name'], 'updated_at' => $date, 'updated_by' => UserModel::getId()]);
+                    $json = ['result' => $result, 'status' => 'edit'];
+
+                }else{
+
+                    $json = ['status' => 'access_deny'];
+                }
                 
             }
     
-        }
+        
         
         echo json_encode($json);
 

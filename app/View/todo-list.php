@@ -16,6 +16,9 @@
         <?if($isAdmin):?>
           <span data-id="<?=$task[id]?>" class="delete-btn delete-task bottom"></span>
         <?endif?>
+        <?if($task['updated_by'] > 0):?>
+          <span class="badge badge-info">Отредактировано администратором</span>
+        <?endif?>
       </div>
     </div>
   <?endforeach?>

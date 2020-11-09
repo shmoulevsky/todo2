@@ -85,13 +85,13 @@
     </div>
   </div>
 </div>
-<?if($action == 'add'):?>
+<?if($action != ''):?>
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Задача была добавлена</strong>
+          <strong><?if($action == 'add'):?>Задача была добавлена<?endif?><?if($action == 'deleted'):?>Задача была удалена<?endif?></strong>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar navbar-light bg-primary">
   <a class="navbar-brand text-light" href="/">
-       Управление задачами v 1.0
+       Управление задачами v 1.1
   </a>
 </nav>
 <div class="container">
